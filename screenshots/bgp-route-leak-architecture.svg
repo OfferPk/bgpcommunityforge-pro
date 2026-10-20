@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 500" width="1000" height="500">
+  <defs>
+    <linearGradient id="bgArchBgp" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#060913"/>
+      <stop offset="100%" stop-color="#03040a"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1000" height="500" fill="url(#bgArchBgp)"/>
+
+  <text x="500" y="45" fill="#ffffff" font-family="-apple-system, sans-serif" font-weight="700" font-size="20" text-anchor="middle">
+    BGP Architecture: Catastrophic Route Leak vs RFC 9234 Shield
+  </text>
+
+  <!-- Left: Catastrophic Route Leak -->
+  <rect x="40" y="80" width="430" height="380" rx="10" fill="#140e18" stroke="#ef4444" stroke-width="1.5"/>
+  <rect x="55" y="95" width="400" height="34" rx="6" fill="#ef4444" fill-opacity="0.2"/>
+  <text x="255" y="118" fill="#f87171" font-family="-apple-system, sans-serif" font-weight="700" font-size="14" text-anchor="middle">
+    Flawed: Unfiltered Transit-to-Transit Leak
+  </text>
+
+  <rect x="55" y="145" width="400" height="60" rx="6" fill="#070b18" stroke="#242f5d"/>
+  <text x="70" y="170" fill="#fca5a5" font-family="monospace" font-size="11">Lumen (AS3356) Transit &rarr; Enterprise (AS65001)</text>
+  <text x="70" y="190" fill="#ef4444" font-family="monospace" font-size="11">Enterprise (AS65001) &rarr; Re-Exported to Cogent (AS174)!</text>
+
+  <rect x="55" y="220" width="400" height="220" rx="6" fill="#1c0f18" stroke="#ef4444" stroke-opacity="0.4"/>
+  <text x="70" y="245" fill="#f87171" font-family="-apple-system, sans-serif" font-weight="700" font-size="12">CATASTROPHIC OUTAGE IMPACT:</text>
+  <text x="70" y="275" fill="#fca5a5" font-family="-apple-system, sans-serif" font-size="11">&bull; Cogent prioritizes customer route over transit</text>
+  <text x="70" y="305" fill="#fca5a5" font-family="-apple-system, sans-serif" font-size="11">&bull; Global Internet traffic floods customer link</text>
+  <text x="70" y="335" fill="#fca5a5" font-family="-apple-system, sans-serif" font-size="11">&bull; 100% link saturation, massive packet loss</text>
+  <text x="70" y="365" fill="#fca5a5" font-family="-apple-system, sans-serif" font-size="11">&bull; Cloudflare/Google prefix hijacking incident</text>
+  <text x="70" y="415" fill="#ef4444" font-family="-apple-system, sans-serif" font-weight="700" font-size="12">GLOBAL BGP ROUTING HIJACK &amp; LINK FAILURE</text>
+
+  <!-- Right: Hardened Architecture -->
+  <rect x="530" y="80" width="430" height="380" rx="10" fill="#081726" stroke="#10b981" stroke-width="1.5"/>
+  <rect x="545" y="95" width="400" height="34" rx="6" fill="#10b981" fill-opacity="0.2"/>
+  <text x="745" y="118" fill="#34d399" font-family="-apple-system, sans-serif" font-weight="700" font-size="14" text-anchor="middle">
+    Hardened: BGPCommunityForge Pro RFC 9234 Shield
+  </text>
+
+  <rect x="545" y="145" width="400" height="60" rx="6" fill="#070b18" stroke="#242f5d"/>
+  <text x="560" y="170" fill="#34d399" font-family="monospace" font-size="11">Prefix-List: PL-BGP-OUT permit 198.51.100.0/24</text>
+  <text x="560" y="190" fill="#fbbf24" font-family="monospace" font-size="11">Set Community: 3356:100 (LP 100) NO_EXPORT</text>
+
+  <rect x="545" y="220" width="400" height="220" rx="6" fill="#071b22" stroke="#10b981" stroke-opacity="0.4"/>
+  <text x="560" y="245" fill="#34d399" font-family="-apple-system, sans-serif" font-weight="700" font-size="12">ZERO-TRUST ROUTING GUARANTEES:</text>
+  <text x="560" y="275" fill="#86efac" font-family="-apple-system, sans-serif" font-size="11">&bull; Strict prefix-list matches ONLY local enterprise routes</text>
+  <text x="560" y="305" fill="#86efac" font-family="-apple-system, sans-serif" font-size="11">&bull; Foreign transit &amp; IX routes blocked from re-announcement</text>
+  <text x="560" y="335" fill="#86efac" font-family="-apple-system, sans-serif" font-size="11">&bull; RFC 9234 Only to Customer (OTC) role boundaries enforced</text>
+  <text x="560" y="365" fill="#86efac" font-family="-apple-system, sans-serif" font-size="11">&bull; Private ASNs (RFC 6996) automatically scrubbed on eBGP</text>
+  <text x="560" y="415" fill="#10b981" font-family="-apple-system, sans-serif" font-weight="700" font-size="12">100% ROUTE LEAK IMMUNITY • DETERMINISTIC TE</text>
+</svg>
